@@ -53,7 +53,7 @@ class CardPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 327,
+      width: 335,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -189,14 +189,31 @@ class _TitleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: const TextStyle(
-        fontSize: AppFontSizes.txtSizeLg,
-        color: AppColors.gray950,
-        fontWeight: FontWeight.w900,
-        letterSpacing: 0,
-        height: 1.5,
+    return TextButton(
+      onPressed: () {},
+      style: ButtonStyle(
+        padding: WidgetStateProperty.all(EdgeInsets.zero),
+        minimumSize: WidgetStateProperty.all(Size(0, 0)),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        overlayColor: WidgetStateProperty.all(Colors.transparent),
+        foregroundColor: WidgetStateProperty.resolveWith<Color>((
+          Set<WidgetState> states,
+        ) {
+          if (states.contains(WidgetState.pressed) ||
+              states.contains(WidgetState.hovered)) {
+            return AppColors.yellow;
+          }
+          return AppColors.gray950;
+        }),
+      ),
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: AppFontSizes.txtSizeLg,
+          fontWeight: FontWeight.w900,
+          letterSpacing: 0,
+          height: 1.5,
+        ),
       ),
     );
   }
